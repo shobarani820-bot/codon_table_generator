@@ -1,0 +1,1 @@
+# Codon Table Generator Project - Step 1: Initialization
