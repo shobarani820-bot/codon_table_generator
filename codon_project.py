@@ -37,9 +37,25 @@ def get_valid_dna():
             print("Invalid DNA sequence! Please use only A, T, G, and C.")
 
 # 4, 5, 6, 7. Translate DNA into Codons and Amino Acids
+# def translate_dna(dna):
+#     codons = []
+#     amino_acids = []
+
+#     # Step through the sequence in steps of 3
+#     for i in range(0, len(dna) - 2, 3):
+#         codon = dna[i:i+3]
+#         codons.append(codon)
+
+#         amino_acid = codon_table.get(codon, 'Unknown')
+#         amino_acids.append(amino_acid)
+
+#     return codons, amino_acids          
+
+# 4, 5, 6, 7. Translate DNA into Codons and Amino Acids
 def translate_dna(dna):
     codons = []
     amino_acids = []
+    start_codons = []
 
     # Step through the sequence in steps of 3
     for i in range(0, len(dna) - 2, 3):
@@ -49,4 +65,8 @@ def translate_dna(dna):
         amino_acid = codon_table.get(codon, 'Unknown')
         amino_acids.append(amino_acid)
 
-    return codons, amino_acids          
+        # Identify start codons
+        if codon == 'ATG':
+            start_codons.append(codon)
+
+    return codons, amino_acids, start_codons
