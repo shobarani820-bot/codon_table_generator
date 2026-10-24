@@ -95,31 +95,44 @@ def get_valid_dna():
 #     return codons, amino_acids, start_codons, stop_codons
 
 # 4, 5, 6, 7. Translate DNA into Codons and Amino Acids
-def translate_dna(dna):
-    codons = []
-    amino_acids = []
-    start_codons = []
-    stop_codons = []
+# def translate_dna(dna):
+#     codons = []
+#     amino_acids = []
+#     start_codons = []
+#     stop_codons = []
 
-    # Step through the sequence in steps of 3
-    for i in range(0, len(dna) - 2, 3):
-        codon = dna[i:i+3]
-        codons.append(codon)
+#     # Step through the sequence in steps of 3
+#     for i in range(0, len(dna) - 2, 3):
+#         codon = dna[i:i+3]
+#         codons.append(codon)
 
-        amino_acid = codon_table.get(codon, 'Unknown')
-        amino_acids.append(amino_acid)
+#         amino_acid = codon_table.get(codon, 'Unknown')
+#         amino_acids.append(amino_acid)
 
-        # Identify start and stop codons
-        if codon == 'ATG':
-            start_codons.append(codon)
-        elif amino_acid == 'Stop':
-            stop_codons.append(codon)
+#         # Identify start and stop codons
+#         if codon == 'ATG':
+#             start_codons.append(codon)
+#         elif amino_acid == 'Stop':
+#             stop_codons.append(codon)
 
-    # Handle incomplete codons at the end
-    remainder = len(dna) % 3
-    if remainder != 0:
-        print(f"Note: Ignored {remainder} extra trailing nucleotide(s) at the end.")
+#     # Handle incomplete codons at the end
+#     remainder = len(dna) % 3
+#     if remainder != 0:
+#         print(f"Note: Ignored {remainder} extra trailing nucleotide(s) at the end.")
 
-    return codons, amino_acids, start_codons, stop_codons
+#     return codons, amino_acids, start_codons, stop_codons
+
+# 8. Run and Display Output in Formatted Format
+if __name__ == "__main__":
+    print("=== Codon Table Generator ===")
+    user_dna = get_valid_dna()
+
+    codons, amino_acids, starts, stops = translate_dna(user_dna)
+
+    print("\n--- Results ---")
+    print("Codons      :", "-".join(codons))
+    print("Amino acids :", " - ".join(amino_acids))
+    print("Start codon :", ", ".join(starts) if starts else "None found")
+    print("Stop codon  :", ", ".join(stops) if stops else "None found")
 
 
