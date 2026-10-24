@@ -52,10 +52,54 @@ def get_valid_dna():
 #     return codons, amino_acids          
 
 # 4, 5, 6, 7. Translate DNA into Codons and Amino Acids
+# def translate_dna(dna):
+#     codons = []
+#     amino_acids = []
+#     start_codons = []
+
+#     # Step through the sequence in steps of 3
+#     for i in range(0, len(dna) - 2, 3):
+#         codon = dna[i:i+3]
+#         codons.append(codon)
+
+#         amino_acid = codon_table.get(codon, 'Unknown')
+#         amino_acids.append(amino_acid)
+
+#         # Identify start codons
+#         if codon == 'ATG':
+#             start_codons.append(codon)
+
+#     return codons, amino_acids, start_codons
+
+# 4, 5, 6, 7. Translate DNA into Codons and Amino Acids
+# def translate_dna(dna):
+#     codons = []
+#     amino_acids = []
+#     start_codons = []
+#     stop_codons = []
+
+#     # Step through the sequence in steps of 3
+#     for i in range(0, len(dna) - 2, 3):
+#         codon = dna[i:i+3]
+#         codons.append(codon)
+
+#         amino_acid = codon_table.get(codon, 'Unknown')
+#         amino_acids.append(amino_acid)
+
+#         # Identify start and stop codons
+#         if codon == 'ATG':
+#             start_codons.append(codon)
+#         elif amino_acid == 'Stop':
+#             stop_codons.append(codon)
+
+#     return codons, amino_acids, start_codons, stop_codons
+
+# 4, 5, 6, 7. Translate DNA into Codons and Amino Acids
 def translate_dna(dna):
     codons = []
     amino_acids = []
     start_codons = []
+    stop_codons = []
 
     # Step through the sequence in steps of 3
     for i in range(0, len(dna) - 2, 3):
@@ -65,8 +109,17 @@ def translate_dna(dna):
         amino_acid = codon_table.get(codon, 'Unknown')
         amino_acids.append(amino_acid)
 
-        # Identify start codons
+        # Identify start and stop codons
         if codon == 'ATG':
             start_codons.append(codon)
+        elif amino_acid == 'Stop':
+            stop_codons.append(codon)
 
-    return codons, amino_acids, start_codons
+    # Handle incomplete codons at the end
+    remainder = len(dna) % 3
+    if remainder != 0:
+        print(f"Note: Ignored {remainder} extra trailing nucleotide(s) at the end.")
+
+    return codons, amino_acids, start_codons, stop_codons
+
+
