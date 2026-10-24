@@ -21,3 +21,8 @@ codon_table = {
     'TAC':'Y', 'TAT':'Y', 'TAA':'Stop', 'TAG':'Stop',
     'TGC':'C', 'TGT':'C', 'TGA':'Stop', 'TGG':'W'
 }
+
+# 2. Accept DNA Input from User
+def get_valid_dna():
+    dna = input("Enter a DNA sequence: ").upper()
+    return dna
