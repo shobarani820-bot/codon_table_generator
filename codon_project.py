@@ -23,6 +23,15 @@ codon_table = {
 }
 
 # 2. Accept DNA Input from User
+# def get_valid_dna():
+#     dna = input("Enter a DNA sequence: ").upper()
+#     return dna
+
+# 2 & 3. Accept and Validate DNA Input
 def get_valid_dna():
-    dna = input("Enter a DNA sequence: ").upper()
-    return dna
+    while True:
+        dna = input("Enter a DNA sequence (e.g., ATGGCTTTTTAA): ").upper()
+        if all(nucleotide in ['A', 'T', 'G', 'C'] for nucleotide in dna):
+            return dna
+        else:
+            print("Invalid DNA sequence! Please use only A, T, G, and C.")
